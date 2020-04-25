@@ -1,6 +1,8 @@
 import React from "react";
 import { Menu } from "antd";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
+import { ClickParam } from "antd/lib/menu";
 
 const StyledMenu = styled(Menu)`
   @media (min-width: 768px) {
@@ -13,10 +15,17 @@ interface IProps {
 }
 
 export const MobileNavigation = ({ isMobileNavOpen }: IProps) => {
-  console.log(isMobileNavOpen);
+  const history = useHistory();
+
+  const handleNavigation = (values: ClickParam) => {
+    if (values.key === "home") return history.push("/");
+
+    return history.push(`/${values.key}`);
+  };
+
   return (
     <StyledMenu
-      // onClick={handleNavigation}
+      onClick={handleNavigation}
       mode="vertical"
       className="app-header-menu"
     >
