@@ -2,6 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 
 import { CreateAccount } from "./create-account";
+import { Login } from "./login";
 
 export const Routes = () => (
   <>
@@ -12,6 +13,8 @@ export const Routes = () => (
       <CreateAccount />
     </Route>
 
-    <Route path="/login">Login Route</Route>
+    <Route path="/login">
+      <Login />
+    </Route>
   </>
 );
