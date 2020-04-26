@@ -2,6 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 
 import { CreateAccount } from "./create-account";
+import { Login } from "./login";
 import { VerifyEmail } from "./verify-email";
 
 export const Routes = () => (
@@ -13,10 +14,12 @@ export const Routes = () => (
       <CreateAccount />
     </Route>
 
+    <Route path="/login">
+      <Login />
+    </Route>
+
     <Route path="/verify-email">
       <VerifyEmail />
     </Route>
-
-    <Route path="/login">Login Route</Route>
   </>
 );

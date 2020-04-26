@@ -1,12 +1,12 @@
 import React from "react";
 import { Row, Col, Card, Form, Input, Button } from "antd";
 import axios from "axios";
+import { Store } from "antd/lib/form/interface";
 
 import { Content } from "../common/components/content";
 
 export const CreateAccount = () => {
-  // @ts-ignore
-  const handleCreateAccount = async (values) => {
+  const handleCreateAccount = async (values: Store) => {
     await axios.post("http://localhost:8000/api/users", {
       user: { ...values },
     });
@@ -28,7 +28,7 @@ export const CreateAccount = () => {
                   },
                 ]}
               >
-                <Input />
+                <Input autoComplete="username" />
               </Form.Item>
               <Form.Item
                 label="Password"
@@ -40,7 +40,7 @@ export const CreateAccount = () => {
                   },
                 ]}
               >
-                <Input.Password />
+                <Input.Password autoComplete="new-password" />
               </Form.Item>
               <Button type="primary" htmlType="submit">
                 Create Account
