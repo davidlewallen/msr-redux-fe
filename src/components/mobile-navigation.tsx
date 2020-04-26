@@ -1,37 +1,46 @@
 import React from "react";
-import { Menu } from "antd";
+import { Menu, Drawer } from "antd";
+import { ClickParam } from "antd/lib/menu";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { ClickParam } from "antd/lib/menu";
 
 const StyledMenu = styled(Menu)`
-  @media (min-width: 768px) {
-    display: none;
-  }
+  border-right: none;
 `;
 
 interface IProps {
   isMobileNavOpen: boolean;
+  setIsMobileNavOpen(value: boolean): void;
 }
 
-export const MobileNavigation = ({ isMobileNavOpen }: IProps) => {
+export const MobileNavigation = ({
+  isMobileNavOpen,
+  setIsMobileNavOpen,
+}: IProps) => {
   const history = useHistory();
 
-  const handleNavigation = (values: ClickParam) => {
-    if (values.key === "home") return history.push("/");
+  const handleNavigation = ({ key }: ClickParam) => {
+    setIsMobileNavOpen(false);
 
-    return history.push(`/${values.key}`);
+    if (key === "home") return history.push("/");
+
+    return history.push(`/${key}`);
   };
-
   return (
-    <StyledMenu
-      onClick={handleNavigation}
-      mode="vertical"
-      className="app-header-menu"
+    <Drawer
+      placement="right"
+      onClose={() => setIsMobileNavOpen(false)}
+      visible={isMobileNavOpen}
     >
-      <Menu.Item key="home">Home</Menu.Item>
-      <Menu.Item key="create-account">Create Account</Menu.Item>
-      <Menu.Item key="login">Log In</Menu.Item>
-    </StyledMenu>
+      <StyledMenu
+        onClick={handleNavigation}
+        mode="vertical"
+        className="app-header-menu"
+      >
+        <Menu.Item key="home">Home</Menu.Item>
+        <Menu.Item key="create-account">Create Account</Menu.Item>
+        <Menu.Item key="login">Log In</Menu.Item>
+      </StyledMenu>
+    </Drawer>
   );
 };
