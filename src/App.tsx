@@ -20,7 +20,10 @@ const App = () => {
           isMobileNavOpen={isMobileNavOpen}
           setIsMobileNavOpen={setIsMobileNavOpen}
         />
-        <MobileNavigation isMobileNavOpen={isMobileNavOpen} />
+        <MobileNavigation
+          isMobileNavOpen={isMobileNavOpen}
+          setIsMobileNavOpen={setIsMobileNavOpen}
+        />
         <Routes />
         <Footer className="app-layout-footer">Testing</Footer>
       </Layout>

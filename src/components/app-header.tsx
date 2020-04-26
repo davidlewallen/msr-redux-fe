@@ -3,14 +3,48 @@ import { Layout, Menu, Button } from "antd";
 import { ClickParam } from "antd/lib/menu";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 
-import "./app-header.css";
+const StyledMenuItem = styled(Menu.Item)``;
 
 const StyledMenu = styled(Menu)`
-  display: none;
+  background-color: inherit;
+  color: white;
+
+  ${StyledMenuItem} {
+    border-bottom: none;
+  }
+`;
+
+const StyledButton = styled(Button)`
+  padding: 0px;
+
+  // @ts-ignore
+  ${MenuFoldOutlined} ${MenuUnfoldOutlined} {
+    font-size: 24px;
+  }
+
+  ${MenuFoldOutlined} ${MenuUnfoldOutlined} > span {
+    vertical-align: middle;
+  }
+`;
+
+const StyledHeader = styled(Layout.Header)`
+  text-align: right;
+  padding: 0 16px;
+
+  ${StyledMenu} {
+    display: none;
+  }
 
   @media (min-width: 768px) {
-    display: inline-block;
+    ${StyledMenu} {
+      display: inline-block;
+    }
+
+    ${StyledButton} {
+      display: none;
+    }
   }
 `;
 
@@ -29,22 +63,22 @@ export const AppHeader = ({ isMobileNavOpen, setIsMobileNavOpen }: IProps) => {
   };
 
   return (
-    <Layout.Header>
+    <StyledHeader>
       <StyledMenu
         onClick={handleNavigation}
         mode="horizontal"
         className="app-header-menu"
       >
-        <Menu.Item key="home">Home</Menu.Item>
-        <Menu.Item key="create-account">Create Account</Menu.Item>
-        <Menu.Item key="login">Log In</Menu.Item>
+        <StyledMenuItem key="home">Home</StyledMenuItem>
+        <StyledMenuItem key="create-account">Create Account</StyledMenuItem>
+        <StyledMenuItem key="login">Log In</StyledMenuItem>
       </StyledMenu>
-      <Button
-        type="primary"
+      <StyledButton
+        type="link"
         onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
       >
-        {isMobileNavOpen ? "Close" : "Open"}
-      </Button>
-    </Layout.Header>
+        {isMobileNavOpen ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+      </StyledButton>
+    </StyledHeader>
   );
 };
