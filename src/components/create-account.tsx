@@ -47,7 +47,7 @@ export const CreateAccount = () => {
           <Card>
             {showVerifyCopy ? (
               <Text>
-                Please verify you account by following the instructions in the
+                Please verify your account by following the instructions in the
                 email sent to you.
               </Text>
             ) : (
