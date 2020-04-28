@@ -2,9 +2,9 @@ import React from "react";
 import { Row, Col, Form, Input, Button, Typography, Card, Space } from "antd";
 import { Link, useHistory } from "react-router-dom";
 import { Store } from "antd/lib/form/interface";
-import axios from "axios";
 
 import { Content } from "../common/components/content";
+import { login } from "../common/api/users";
 
 const { Text } = Typography;
 
@@ -12,10 +12,10 @@ export const Login = () => {
   const history = useHistory();
 
   const handleLogin = (values: Store) => {
-    axios
-      .post("http://localhost:8000/api/users/login", {
-        user: { ...values },
-      })
+    login({
+      email: values.email,
+      password: values.password,
+    })
       .then(() => history.push("/"))
       .catch((err) => console.log(err));
   };

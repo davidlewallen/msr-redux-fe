@@ -1,15 +1,13 @@
 import React from "react";
 import { Row, Col, Card, Form, Input, Button } from "antd";
-import axios from "axios";
 import { Store } from "antd/lib/form/interface";
 
 import { Content } from "../common/components/content";
+import { createAccount } from "../common/api/users";
 
 export const CreateAccount = () => {
   const handleCreateAccount = async (values: Store) => {
-    await axios.post("http://localhost:8000/api/users", {
-      user: { ...values },
-    });
+    await createAccount({ email: values.email, password: values.password });
   };
 
   return (
