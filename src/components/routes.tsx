@@ -1,12 +1,14 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import { CreateAccount } from "./create-account";
 import { Login } from "./login";
 import { VerifyEmail } from "./verify-email";
+import { Dashboard } from "./dashboard";
+import { ProtectedRoute } from "../common/components/protected-route";
 
 export const Routes = () => (
-  <>
+  <Switch>
     <Route exact path="/">
       Home Route
     </Route>
@@ -21,5 +23,9 @@ export const Routes = () => (
     <Route path="/verify-email">
       <VerifyEmail />
     </Route>
-  </>
+
+    <ProtectedRoute path="/dashboard">
+      <Dashboard />
+    </ProtectedRoute>
+  </Switch>
 );

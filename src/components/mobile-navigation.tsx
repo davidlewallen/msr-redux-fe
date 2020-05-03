@@ -40,6 +40,7 @@ export const MobileNavigation = ({
         <Menu.Item key="home">Home</Menu.Item>
         <Menu.Item key="create-account">Create Account</Menu.Item>
         <Menu.Item key="login">Log In</Menu.Item>
+        <Menu.Item key="dashboard">Dashboard</Menu.Item>
       </StyledMenu>
     </Drawer>
   );
